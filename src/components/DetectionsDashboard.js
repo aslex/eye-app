@@ -25,7 +25,7 @@ export const DetectionsDashboard = () => {
       <Title>displaying {filteredData?.length} detections</Title>
       <Container>
         <FilterBar />
-        {!filteredData.length && <h2>No results.</h2>}
+        {!filteredData?.length && <h2>No results.</h2>}
         <div>{detections}</div>
       </Container>
     </>

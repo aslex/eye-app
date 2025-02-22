@@ -7,31 +7,23 @@ import {
   SEVERITY,
   STATUS,
 } from "../data-layer/types.js";
+import {
+  updateActiveFilters,
+  isActive,
+  filterData,
+} from "../data-layer/helpers.js";
 
 export const FilterBar = () => {
   const { data, setFilteredData } = useContext(DataContext);
   const [activeFilters, setActiveFilters] = useState(DEFAULT_FILTERS);
 
   const handleFilter = (attribute, value) => {
-    const newArr = [...activeFilters[attribute]];
-    const index = newArr.indexOf(value);
-    if (index !== -1) newArr.splice(index, 1);
-    else newArr.push(value);
-    setActiveFilters({ ...activeFilters, [attribute]: newArr });
+    setActiveFilters(updateActiveFilters({ attribute, value, activeFilters }));
   };
 
-  const isActive = (attr, val) => {
-    return activeFilters[attr].includes(val);
-  };
   useEffect(() => {
     if (!data) return;
-    const filtered = [...data].filter((i) => {
-      return (
-        activeFilters[FILTERS.status].includes(i[FILTERS.status]) &&
-        activeFilters[FILTERS.severity].includes(i[FILTERS.severity])
-      );
-    });
-    setFilteredData(filtered);
+    setFilteredData(filterData({ data, activeFilters }));
   }, [activeFilters, data]);
 
   return (
@@ -40,7 +32,13 @@ export const FilterBar = () => {
       <FilterButton
         name={FILTERS.status}
         value={STATUS.triggered}
-        props={{ active: isActive(FILTERS.status, STATUS.triggered) }}
+        props={{
+          active: isActive({
+            attribute: FILTERS.status,
+            value: STATUS.triggered,
+            activeFilters,
+          }),
+        }}
         onClick={(e) => handleFilter(e.target.name, e.target.value)}
       >
         triggered
@@ -48,7 +46,13 @@ export const FilterBar = () => {
       <FilterButton
         name={FILTERS.status}
         value={STATUS.acknowledged}
-        props={{ active: isActive(FILTERS.status, STATUS.acknowledged) }}
+        props={{
+          active: isActive({
+            attribute: FILTERS.status,
+            value: STATUS.acknowledged,
+            activeFilters,
+          }),
+        }}
         onClick={(e) => handleFilter(e.target.name, e.target.value)}
       >
         acknowledged
@@ -58,7 +62,13 @@ export const FilterBar = () => {
       <FilterButton
         name={FILTERS.severity}
         value={SEVERITY.low}
-        props={{ active: isActive(FILTERS.severity, SEVERITY.low) }}
+        props={{
+          active: isActive({
+            attribute: FILTERS.severity,
+            value: SEVERITY.low,
+            activeFilters,
+          }),
+        }}
         onClick={(e) => handleFilter(e.target.name, e.target.value)}
       >
         low
@@ -66,7 +76,13 @@ export const FilterBar = () => {
       <FilterButton
         name={FILTERS.severity}
         value={SEVERITY.high}
-        props={{ active: isActive(FILTERS.severity, SEVERITY.high) }}
+        props={{
+          active: isActive({
+            attribute: FILTERS.severity,
+            value: SEVERITY.high,
+            activeFilters,
+          }),
+        }}
         onClick={(e) => handleFilter(e.target.name, e.target.value)}
       >
         high
