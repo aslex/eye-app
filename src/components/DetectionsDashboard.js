@@ -27,6 +27,7 @@ export const DetectionsDashboard = () => {
         <FilterBar />
         {!filteredData?.length && <h2>No results.</h2>}
         <div>{detections}</div>
+        {/* TO DO: add button to fetch more data */}
       </Container>
     </>
   );
