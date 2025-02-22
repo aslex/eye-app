@@ -37,6 +37,7 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 1rem;
+  justify-content: center;
 `;
 
 export const Severity = styled.p`

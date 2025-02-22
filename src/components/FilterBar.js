@@ -1,7 +1,12 @@
 import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../DataContext";
 import { Sidebar, FilterButton } from "./FilterBar.styled";
-import { DEFAULT_FILTERS, FILTERS, STATUS } from "../data-layer/types.js";
+import {
+  DEFAULT_FILTERS,
+  FILTERS,
+  SEVERITY,
+  STATUS,
+} from "../data-layer/types.js";
 
 export const FilterBar = () => {
   const { data, setFilteredData } = useContext(DataContext);
@@ -47,6 +52,24 @@ export const FilterBar = () => {
         onClick={(e) => handleFilter(e.target.name, e.target.value)}
       >
         acknowledged
+      </FilterButton>
+
+      <p>filter by severity:</p>
+      <FilterButton
+        name={FILTERS.severity}
+        value={SEVERITY.low}
+        props={{ active: isActive(FILTERS.severity, SEVERITY.low) }}
+        onClick={(e) => handleFilter(e.target.name, e.target.value)}
+      >
+        low
+      </FilterButton>
+      <FilterButton
+        name={FILTERS.severity}
+        value={SEVERITY.high}
+        props={{ active: isActive(FILTERS.severity, SEVERITY.high) }}
+        onClick={(e) => handleFilter(e.target.name, e.target.value)}
+      >
+        high
       </FilterButton>
     </Sidebar>
   );
