@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { DataContext } from "../DataContext";
-import { Card, Sidebar, Container, Severity } from "./Detections.styled";
+import { Title, Card, Container, Severity } from "./Detections.styled";
+import { FilterBar } from "./FilterBar";
 
 export const DetectionsDashboard = () => {
-  const { data, loading } = useContext(DataContext);
-  const detections = data?.map((d) => {
+  const { filteredData, loading, error } = useContext(DataContext);
+  const detections = filteredData?.map((d) => {
     return (
       <Card key={d.id} props={d}>
         <h4>{d.title}</h4>
@@ -14,12 +15,16 @@ export const DetectionsDashboard = () => {
       </Card>
     );
   });
+
+  if (loading) {
+    return <h4>data is loading..</h4>;
+  }
+  if (error) return <h2>An error ocurred: {error}</h2>;
   return (
     <>
-      <h1>detections list</h1>
+      <Title>displaying {filteredData?.length} detections</Title>
       <Container>
-        {loading && "data is loading.."}
-        <Sidebar />
+        <FilterBar />
         <div>{detections}</div>
       </Container>
     </>

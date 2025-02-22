@@ -1,8 +1,11 @@
 import styled from "styled-components";
+import {
+  PRIMARY_BLUE,
+  SECONDARY_BLUE,
+  SECONDARY_ORANGE,
+} from "./constants.styled";
 
-const PRIMARY_BLUE = "rgb(25, 36, 64)";
-const SECONDARY_ORANGE = "rgb(244, 151, 25)";
-const SECONDARY_BLUE = "rgb(188, 222, 240)";
+export const Title = styled.h4``;
 
 export const Card = styled.div`
   box-shadow: 5px 2px 2px 2px ${PRIMARY_BLUE};
@@ -11,17 +14,24 @@ export const Card = styled.div`
     props.severity === "low" ? SECONDARY_BLUE : SECONDARY_ORANGE};
   color: white;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-flow: column;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
-  margin: 1rem;
+  margin-top: 1rem;
   padding: 0.5rem;
   color: black;
 
   & > :nth-child(1) {
+    grid-column: 1 / 3;
+  }
+
+  @media (max-width: 900px) {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 0;
   }
 `;
-
-export const Sidebar = styled.div``;
 
 export const Container = styled.div`
   display: grid;

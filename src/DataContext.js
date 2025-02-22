@@ -8,12 +8,14 @@ export const DataProvider = ({ children }) => {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [filteredData, setFilteredData] = useState(null);
 
   const fetchData = async () => {
     setLoading(true);
     const data = await getAnalyticsData(page);
     if (!data) setError("error loading data");
-    setData(data);
+    else setData(data);
+    if (!filteredData) setFilteredData([...data]);
     setLoading(false);
   };
   useEffect(() => {
@@ -22,7 +24,16 @@ export const DataProvider = ({ children }) => {
 
   return (
     <DataContext.Provider
-      value={{ data, setData, loading, error, setPage, page }}
+      value={{
+        data,
+        setData,
+        loading,
+        error,
+        setPage,
+        page,
+        filteredData,
+        setFilteredData,
+      }}
     >
       {children}
     </DataContext.Provider>
