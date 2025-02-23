@@ -33,7 +33,10 @@ export const FilterBar = () => {
         placeholder="search by title or id"
         data-testid="text-search"
         onChange={(e) => {
-          setActiveFilters({ ...activeFilters, search: e.target.value });
+          setActiveFilters({
+            ...activeFilters,
+            [FILTERS.search]: e.target.value,
+          });
         }}
       />
       <p>Filter by status:</p>

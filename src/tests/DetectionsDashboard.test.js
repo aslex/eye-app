@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { DetectionsDashboard } from "../components/DetectionsDashboard";
 import { DataContext } from "../DataContext";
 import testData from "./testData.json";
-import { FILTERS, SEVERITY } from "../data-layer/types";
+import { DEFAULT_FILTERS, FILTERS, SEVERITY } from "../data-layer/types";
 import { SECONDARY_ORANGE } from "../components/constants.styled";
 
 test("renders detection cards", () => {
@@ -14,6 +14,8 @@ test("renders detection cards", () => {
         filteredData: testData,
         setData: () => [],
         setFilteredData: () => [],
+        activeFilters: DEFAULT_FILTERS,
+        setActiveFilters: () => {},
       }}
     >
       <DetectionsDashboard />
@@ -32,6 +34,8 @@ test("renders 'no results' when there are no detections", () => {
         filteredData: [],
         setData: () => [],
         setFilteredData: () => [],
+        activeFilters: DEFAULT_FILTERS,
+        setActiveFilters: () => {},
       }}
     >
       <DetectionsDashboard />
@@ -50,6 +54,8 @@ test("high severity cards are orange", () => {
         filteredData: [{ ...testData[0], [FILTERS.severity]: SEVERITY.high }],
         setData: () => [],
         setFilteredData: () => [],
+        activeFilters: DEFAULT_FILTERS,
+        setActiveFilters: () => {},
       }}
     >
       <DetectionsDashboard />
