@@ -15,7 +15,7 @@ export const SEVERITY = {
 };
 
 export const DEFAULT_FILTERS = {
-  [FILTERS.status]: [STATUS.triggered, STATUS.acknowledged],
-  [FILTERS.severity]: [SEVERITY.low, SEVERITY.high],
+  [FILTERS.status]: [],
+  [FILTERS.severity]: [],
   [FILTERS.search]: "",
 };

@@ -14,8 +14,8 @@ import {
 } from "../data-layer/helpers.js";
 
 export const FilterBar = () => {
-  const { data, setFilteredData } = useContext(DataContext);
-  const [activeFilters, setActiveFilters] = useState(DEFAULT_FILTERS);
+  const { data, setFilteredData, activeFilters, setActiveFilters } =
+    useContext(DataContext);
 
   const handleFilter = (attribute, value) => {
     setActiveFilters(updateActiveFilters({ attribute, value, activeFilters }));
