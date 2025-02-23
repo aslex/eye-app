@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../DataContext";
-import { Sidebar, FilterButton } from "./FilterBar.styled";
+import { Sidebar, FilterButton, SearchBar } from "./FilterBar.styled";
 import {
   DEFAULT_FILTERS,
   FILTERS,
@@ -28,6 +28,14 @@ export const FilterBar = () => {
 
   return (
     <Sidebar>
+      <SearchBar
+        type="text"
+        placeholder="search by title or id"
+        data-testid="text-search"
+        onChange={(e) => {
+          setActiveFilters({ ...activeFilters, search: e.target.value });
+        }}
+      />
       <p>Filter by status:</p>
       <FilterButton
         data-testid="filter-button"

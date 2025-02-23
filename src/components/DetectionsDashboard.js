@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { DataContext } from "../DataContext";
-import { Title, Card, Container, Severity } from "./Detections.styled";
+import { Title, Card, Container, Severity, Id } from "./Detections.styled";
 import { FilterBar } from "./FilterBar";
 
 export const DetectionsDashboard = () => {
@@ -12,6 +12,7 @@ export const DetectionsDashboard = () => {
         <p>Status: {d.status}</p>
         <p>Service: {d.service}</p>
         <Severity props={d}>Severity: {d.severity}</Severity>
+        <Id>id: {d.id}</Id>
       </Card>
     );
   });

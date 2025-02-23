@@ -14,3 +14,11 @@ export const FilterButton = styled.button`
   background-color: ${({ props }) => (props.active ? PRIMARY_BLUE : "white")};
   color: ${({ props }) => (!props.active ? PRIMARY_BLUE : "white")};
 `;
+
+export const SearchBar = styled.input`
+  width: 80%;
+  height: 1.5rem;
+  border-radius: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+`;

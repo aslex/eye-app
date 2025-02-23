@@ -70,6 +70,7 @@ describe("filterData", () => {
     activeFilters = {
       [FILTERS.status]: [STATUS.triggered],
       [FILTERS.severity]: [SEVERITY.high],
+      [FILTERS.search]: "Azure",
     };
   });
   it("removes irrelevant detections", () => {
@@ -98,5 +99,21 @@ describe("filterData", () => {
         })
       )
     );
+  });
+  it("searches by title", () => {
+    const result = filterData({ data: testData, activeFilters });
+    expect(result[0].title.includes(activeFilters[FILTERS.search])).toEqual(
+      true
+    );
+  });
+  it("searches by id", () => {
+    const id = "aefb7e1e";
+    const filters = {
+      [FILTERS.status]: [STATUS.triggered, STATUS.acknowledged],
+      [FILTERS.severity]: [SEVERITY.high, SEVERITY.low],
+      [FILTERS.search]: id,
+    };
+    const result = filterData({ data: testData, activeFilters: filters });
+    expect(result[0].id.includes(id)).toEqual(true);
   });
 });

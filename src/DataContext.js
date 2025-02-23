@@ -12,11 +12,16 @@ export const DataProvider = ({ children }) => {
 
   const fetchData = async () => {
     setLoading(true);
-    const data = await getAnalyticsData(page);
-    if (!data) setError("error loading data");
-    else setData(data);
-    if (!filteredData) setFilteredData([...data]);
-    setLoading(false);
+    try {
+      const data = await getAnalyticsData(page);
+      if (!data) setError("error loading data");
+      else setData(data);
+      if (!filteredData) setFilteredData([...data]);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setError(err);
+    }
   };
   useEffect(() => {
     fetchData();
