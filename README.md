@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## ENV
 
-You will need to define an environment variable `REACT_APP_API_KEY` with your api key.
+You will need to save your api key as an environment variable: `REACT_APP_API_KEY`
 
 ## Available Scripts
 
