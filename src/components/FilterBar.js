@@ -28,8 +28,9 @@ export const FilterBar = () => {
 
   return (
     <Sidebar>
-      <p>filter by status:</p>
+      <p>Filter by status:</p>
       <FilterButton
+        data-testid="filter-button"
         name={FILTERS.status}
         value={STATUS.triggered}
         props={{
@@ -58,7 +59,7 @@ export const FilterBar = () => {
         acknowledged
       </FilterButton>
 
-      <p>filter by severity:</p>
+      <p>Filter by severity:</p>
       <FilterButton
         name={FILTERS.severity}
         value={SEVERITY.low}

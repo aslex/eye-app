@@ -7,7 +7,7 @@ export const DetectionsDashboard = () => {
   const { filteredData, loading, error } = useContext(DataContext);
   const detections = filteredData?.map((d) => {
     return (
-      <Card key={d.id} props={d}>
+      <Card key={d.id} props={d} data-testid="detections-card">
         <h4>{d.title}</h4>
         <p>Status: {d.status}</p>
         <p>Service: {d.service}</p>
